@@ -31,6 +31,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.patrickmota.movieapp.navigation.MovieNavigation
+import com.patrickmota.movieapp.screens.home.MainContent
 import com.patrickmota.movieapp.ui.theme.MovieAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,7 +40,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                MainContent()
+                MovieNavigation()
             }
         }
     }
@@ -47,41 +49,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp(content: @Composable () -> Unit) {
     MovieAppTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(backgroundColor = Color.Magenta, elevation = 5.dp) {
-                    Text(text = "Movies")
-                }
-            }
-        ) {
-            content()
-        }
+        content()
     }
 }
 
-@Composable
-fun MainContent(
-    movieList: List<String> = listOf(
-        "Avatar",
-        "300",
-        "Harry Potter",
-        "Life",
-        "Cross the Line...",
-        "Be harry...",
-        "Happy feet...",
-        "Happiness..."
-    )
-) {
-    Column(modifier = Modifier.padding(12.dp)) {
-        LazyColumn {
-            items(items = movieList) {
-                MovieRow(movie = it) { movie ->
-                    Log.d("test", "MainContent: $movie")
-                }
-            }
-        }
-    }
-}
 
 @Composable
 fun MovieRow(movie: String, onItemClick: (String) -> Unit = {}) {
@@ -118,6 +89,6 @@ fun MovieRow(movie: String, onItemClick: (String) -> Unit = {}) {
 @Composable
 fun DefaultPreview() {
     MyApp {
-        MainContent()
+        MovieNavigation()
     }
 }
