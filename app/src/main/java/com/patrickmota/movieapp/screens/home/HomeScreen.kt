@@ -1,6 +1,5 @@
 package com.patrickmota.movieapp.screens.home
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -49,9 +48,7 @@ fun MainContent(
         LazyColumn {
             items(items = movieList) {
                 MovieRow(movie = it) { movie ->
-                    navController.navigate(route = MovieScreens.DetailScreen.name)
-
-//                    Log.d("test", "MainContent: $movie")
+                    navController.navigate(route = MovieScreens.DetailScreen.name + "/$movie")
                 }
             }
         }
